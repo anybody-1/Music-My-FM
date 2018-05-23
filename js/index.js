@@ -121,12 +121,12 @@ var FM = {
         EventCenter.on('select-albumn', function(e, channelObj){
             _this.channelId = channelObj.channelId
             _this.channelName = channelObj.channelName
-            // if(_this.channelId === 0){
-            //     _this.loadMusic()
-            // }else {
-            _this.loadMusic()
-                // _this.$container.find('.btn-play').removeClass('icon-play').addClass('icon-pause')
-            // }
+            if(_this.channelId === 0){
+                _this.loadMusic()
+            }else {
+                _this.loadMusic()
+                _this.$container.find('.btn-play').removeClass('icon-play').addClass('icon-pause')
+            }
         })
         this.$container.find('.btn-play').on('click', function(){
             var $btn = $(this)
@@ -188,7 +188,6 @@ var FM = {
         this.$container.find('.detail .author').text(this.song.artist)
         this.$container.find('.aside figure').css('background-image', 'url(' + this.song.picture)
         this.$container.find('.tag').text(this.channelName)
-        _this.$container.find('.btn-play').removeClass('icon-play').addClass('icon-pause')
         
     },
     updateStatus: function(){
