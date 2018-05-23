@@ -71,7 +71,6 @@ var Footer = {
         var _this = this
         $.getJSON('https://jirenguapi.applinzi.com/fm/getChannels.php')
             .done(function(ret){
-                console.log(ret)
                 _this.renderFooter(ret.channels)
             }).fail(function(){
                 console.log('error')
@@ -122,12 +121,12 @@ var FM = {
         EventCenter.on('select-albumn', function(e, channelObj){
             _this.channelId = channelObj.channelId
             _this.channelName = channelObj.channelName
-            if(_this.channelId === 0){
-                _this.loadMusic()
-            }else {
-                _this.loadMusic()
-                _this.$container.find('.btn-play').removeClass('icon-play').addClass('icon-pause')
-            }
+            // if(_this.channelId === 0){
+            //     _this.loadMusic()
+            // }else {
+            _this.loadMusic()
+                // _this.$container.find('.btn-play').removeClass('icon-play').addClass('icon-pause')
+            // }
         })
         this.$container.find('.btn-play').on('click', function(){
             var $btn = $(this)
@@ -157,7 +156,6 @@ var FM = {
         var _this = this
         $.getJSON('https://jirenguapi.applinzi.com/fm/getSong.php', {channel: _this.channelId})
          .done(function(ret){
-             console.log(ret)
             _this.song = ret.song[0]
             _this.setMusic()
             _this.loadLyric()
@@ -190,6 +188,7 @@ var FM = {
         this.$container.find('.detail .author').text(this.song.artist)
         this.$container.find('.aside figure').css('background-image', 'url(' + this.song.picture)
         this.$container.find('.tag').text(this.channelName)
+        _this.$container.find('.btn-play').removeClass('icon-play').addClass('icon-pause')
         
     },
     updateStatus: function(){
